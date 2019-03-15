@@ -130,8 +130,9 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 \begin{solution}
   \begin{subprob}
   \item
-    By definition the vertex $v \in G, d(v) = \delta(G)$ has no neighbours in the maximum independent set of $G$ so there are at least $\delta(G)$ vertices that are not in the maximum independent set.
-  \item fig
+    By definition the vertex $v \in G, d(v) = \delta(G)$ has no neighbours in the maximum independent set of $G$ so there are at least $\delta(G)$ vertices that are not in the maximum independent set. All other $u \in V(G)$ might be an thus $\alpha(G)\le |V(G)|-\delta(G)$ is true.
+  \item
+    Each edge $e$ $\forall v, \forall e = \{v,u\}$ where $v$ is in some maximum independent set of $G$ is uniquely connected to $v$ and no other vertex in $G$. All vertices in the maximum independent set have at least $\delta(G)$ unique edges so their number is at least $\alpha(G)\delta(G)$ this number is at most $|E(G)|$ so $\alpha(G)\delta(G) \leq |E(G)|$ which is equivalent to the requested formula.
   \end{subprob}
 \end{solution}
 \begin{problem}
