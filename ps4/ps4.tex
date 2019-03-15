@@ -1,0 +1,318 @@
+\documentclass[a4paper,11pt]{amsart}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\parskip 1ex
+\parindent 0 pt
+
+\newcounter{temp}
+\newcounter{prob_counter}
+\newcounter{sprob_counter}
+
+\newenvironment{problem}
+{\begin{list}{{\bf \arabic{prob_counter}}}{
+      \usecounter{prob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{4.3ex}
+      \setlength{\leftmargin}{1.4em}}
+      \setcounter{prob_counter}{\value{temp}}
+}
+{\setcounter{temp}{\value{prob_counter}}
+  \end{list}
+}
+
+\newenvironment{subprob}
+{
+  \begin{list}{{\bf \alph{sprob_counter}}}{
+      \usecounter{sprob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{.5ex}
+      \setlength{\leftmargin}{1.7em}}
+}
+{\end{list}}
+
+\newenvironment{solution}{\textbf{Solution.}}{\qed}
+
+\newcommand{\rubrik}[1]{\bigskip \begin{center}{\bf #1}\end{center} \medskip}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+{\small{\sc\noindent
+        Name1 ({\tt email1}) and Name2 ({\tt email2})
+}}
+
+\rubrik{PROBLEM SET 4 (T-445-GRTH)}
+
+You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get more than {\bf X} points (in total) from a problem section with annotation {\bf max X}.
+
+{\bf Please make sure to:}\\
+1. Write your name/email(s) on your work.\\
+2. Write your answers in \texttt{{\textbackslash}begin\{solution\} ... {\textbackslash}end\{solution\}} blocks.\\
+3. Write clear and concise proofs: points may be deducted for vagueness.
+
+
+
+
+\section{Planar Graphs ({\bf max 30})}
+
+\begin{problem}
+\item (5 points) Let G be a simple planar bipartite graph with bipartition $V(G) = X \cup Y$.
+Show that  $|E(G)| \le 2 |X| + 2|Y| - 4$.
+\end{problem}
+\begin{solution}
+Bipartite graphs can not have a 3-cycle as they can not have a $n$-cycle where $n$ is odd. Corollary 7.15 states that a simple planar graph $G$ has the property $|E(G)| \leq 2|V(G)| - 4$ and as $2|X| + 2|Y| = 2|V(G)|$ the equation is true.
+\end{solution}
+
+\begin{problem}
+\item (7 points) Let $G$ be a graph such that for every two vertices $u, v$, there
+are at most two vertex-disjoint paths of positive lengths from $u$ to $v$.
+Show that $G$ is planar.
+\end{problem}
+
+
+\begin{problem}
+\item (5 points) A plane graph is self-dual if it is isomorphic to its dual graph.
+Show that, if $G$ is self-dual, then $2 |V(G)|$ = $|E(G)| + 2$.
+\end{problem}
+
+\begin{problem}
+\item (12 points) Let $G$ and $G^*$ be a plane graph and its dual. Show that:
+\begin{subprob}
+\item If $\chi(G^*)=2$, then $d_G(u)$ is even for all $u\in V(G)$,
+\item An Eulerian graph cannot have an odd-size edge cut (cf. Thm. 6.8),
+\item If $G$ is Eulerian, $G^*$ has no odd cycles,
+\item Derive the conclusion: plane graph $G$ is Eulerian iff $G^*$ is bipartite.
+\end{subprob}
+\end{problem}
+
+\begin{problem}
+\item (8 points) Show that for two homeomorphic graphs $G$ and $G'$,
+\[
+|V (G)| - |E(G)| = |V (G')| - |E(G')|.
+\]
+\end{problem}
+\begin{solution}
+  For $G$ to be homeomorphic to $G'$, there must be a graph $M$ that is a minor of $G$ and a graph $M'$ that is a minor of $G'$ such that $M$ is isomorphic to $M'$. $M$ and $M'$ must have been constructed from $G$ and $G'$ only using smoothing, which is the process of contracting an edge where one vertex has degree 2. Smoothing can also be considered as removing a vertex of degree 2 and connecting its neighbours. $|V(G)| - |E(G)| = |V(M)| - |E(M)|$ this must be true as a contraction reduces the number of vertices by one and the number of edges as well and $M$ was created using contractions only. As $M$ is isomorphic to $M'$, $|V(M)| - |E(M)| = |V(M')| - |E(M')|$ is a fact and thus $$|V(G)| - |E(G)| = |V(G')| - |E(G')|$$
+\end{solution}
+\begin{problem}
+\item (8 points) Consider a finite collection of straight lines in the plane and the geographical map formed by these lines. Show that the regions of this map can be properly colored using two colors.
+\end{problem}
+
+\begin{solution}
+  Let's prove this by induction:
+
+  \textbf{Base case:}
+  We start with only one face -- the infinite face. Draw any line, and by
+  inverting the colour of one side of the line, the property holds; we can
+  colour the plane with only two colours.
+
+  \textbf{Inductive step:}
+  Assume we have a plane whose faces can be 2-coloured. Draw any line $l$ on the
+  plane. If we do so, we can trivially observe that every pair of faces
+  seperated by $l$ share the same colour; this means that if we invert the
+  colours on one side of $l$, we have a proper 2-colouring of the plane.
+
+\end{solution}
+
+\section{Coloring 1 ({\bf max 15})}
+
+
+\begin{problem}
+\item (9 points)
+\begin{subprob}
+\item Determine (and justify) the chromatic numbers of the Petersen and Gr\"otzsch graphs (in the same order below)
+\begin{center}
+\includegraphics[height=4.5cm]{petersen.pdf}
+\includegraphics[height=4.5cm]{grotzsch.pdf}
+\end{center}
+\item Show that the \emph{rigid ladder graph} has chromatic number 3
+\begin{center}
+\includegraphics[height=1.5cm]{ladder.pdf}
+ \end{center}
+\end{subprob}
+\end{problem}
+
+\begin{solution}
+Since vertices 1-5 form an odd cycle, the chromatic number of the Petersen graph $P$
+is $3 \leq \chi(P)$. Furthermore, by Brook's theorem, we have that $\chi(P) \leq
+\Delta(P) = 3$, so $\chi(P) = 3$.
+\end{solution}
+
+\begin{solution}
+Since vertices 1-5 form an odd cycle, the chromatic number of the Grötzsch graph
+$G$ is $3 \leq \chi(G)$. We can easily find a colouring of the $G$ with four
+colours (see picture), so $\chi(G) \in \{3, 4\}$.
+
+Let's assume that there exists a valid 3-colouring of $G$. Since you need 3
+colours to colour vertices 1-5, and there is a 1-1 correspondence between the
+colours of 1-5 and 6-10, you need 3 colours to colour vertices 6-10. This is a
+contradiction since vertex 11 is connected to each of vertices 6-10, and thus
+needs a new colour. The chromatic number is 4.
+\end{solution}
+
+\begin{problem}
+\item (8 points) Show that:
+\begin{subprob}
+\item If $G$ is a simple graph on $n$ vertices that is not $K_n$,
+then $\chi(G) \le n-1$.
+\item If $G$ is a simple graph on $n$ vertices with $m \le \frac{(n-1)(n-2)}{2} - 1$ edges, then $\chi(G) \le n-2$.
+\end{subprob}
+\end{problem}
+
+
+\begin{problem}
+\item (8 points) Consider a graph $G$ with $\chi(G)=k$. Show that for every $1\le k'\le k-1$, there are graphs $G_1,G_2$, such that $\chi(G_1)=k'$, $\chi(G_2)=k-k'$, and $G=G_1\cup G_2$.
+{\small Note: This problem is ill-stated. But we can save the day by assuming
+  that $1 < k' < k-1$, i.e., we have strict inequalities.}
+\end{problem}
+
+
+\section{Coloring 2 ({\bf max 60})}
+
+
+\begin{problem}
+\item (8 points) Let $G$ and $H$ be simple graphs. Define the \emph{Cartesian product} $G\times H$ as the simple graph with vertex set $V(G)\times V(H)$ and edge set
+\begin{align*}
+E(G\times H)=\{\{u,v\}, \{u',v'\} : u&=u'\text{ and }\{v, v'\}\in E(H)\text{ or }\\
+ v&=v'\text{ and }\{u, u'\}\in E(G)\}.
+\end{align*}
+Show that $\chi(G\times H)=\max\{\chi(G), \chi(H)\}$.
+\end{problem}
+
+
+
+\begin{problem}
+\item (7 points) Show that for a simple graph $G$ with $m$ edges,
+\\$\chi(G)\le \frac{1}{2} + \sqrt{2m + \frac{1}{4}}.$\\
+{\small Hint: First show that $m \ge {\chi(G) \choose 2}$, by considering an optimal coloring.}
+\end{problem}
+
+\begin{solution}
+For every colour $1$ and $2$, there must be a exist a pair of vertices $v, u \in
+V(G)$ such that $c(v) = 1$ and $c(u) = 2$, since otherwise the two colours could
+be combined. From that we have that
+\[
+  m \geq {\chi(G) \choose 2} = \frac{1}{2}\chi(G)(\chi(G) - 1)
+  = \frac{1}{2}\chi(G)^{2} - \frac{1}{2}\chi(G)
+\]
+and thus:
+\[
+  2m \geq \chi(G)^{2} + \chi(G)
+\]
+If we complete the square, we have:
+\[
+  2m \geq (\chi(G) - \frac{1}{2})^{2} + \frac{1}{4}
+\]
+The rest is simple algebra:
+\[
+  \sqrt{2m + \frac{1}{4}} + \frac{1}{2} \leq \chi(G)
+\]
+\end{solution}
+
+\begin{problem}
+\item (9 points) Let $G_1$ and $G_2$ be subgraphs of a given simple graph. Show that $\chi(G_1 \cup G_2) \le \chi(G_1) \cdot \chi(G_2)$.
+\end{problem}
+
+\begin{problem}
+\item (8 points) Let $G$ be a graph and let $\ell$ be the length of a longest path in $G$.
+Show that $\chi(G) \le \ell + 1$.\\
+{\small Hint: Think about the end-vertices of longest paths (and their degrees).}
+{\small Another hint: $D(G) \leq \ell$}
+\end{problem}
+
+\begin{problem}
+\item (8 points) Find a lower bound on inductiveness in terms of average degree.
+{\small Hint: You can use a problem from a previous problem set.}
+\end{problem}
+
+\begin{solution}
+We know that $\chi(G) \leq D(G) + 1$
+\end{solution}
+
+\begin{problem}
+\item (8 points) Find a graph where inductiveness gives a much better bound than Brooks' theorem. How large can $\frac{\Delta(G)}{D(G)}$ get (as a function of $\Delta$)?
+\end{problem}
+
+
+\begin{problem}
+\item (20 points) Let $G$ be a simple graph on $n$ vertices and $\overline{G}$ be its complement. Show that $2\sqrt{n} \le \chi(G) + \chi(\overline{G}) \le n+1$.\\
+{\small Hint: For the first inequality, use the AM-GM inequality. For the second one, you can try the following induction. Let $u\in V(G)$. If $G' = G - u$, then $\chi(G)\le \chi(G')+1$ and $\chi(\overline{G})\le \chi(\overline{G'})+1$. Show that if equality holds in both cases, then $d_{G}(u)\ge \chi(G)$ and $d_{\overline{G}}(u)\ge \chi(\overline G)$ (what next?). Otherwise, proceed by induction.}
+\end{problem}
+
+\begin{solution}
+  Let's first show that $2\sqrt{n} \leq \chi(G) + \chi(\overline{G})$:
+
+  By the AM-GM inequality:
+  \[
+  2\sqrt{\chi(G)\chi(\overline{G})} \leq \chi(G) +
+  \chi(\overline{G})
+  \]
+  Furthermore, $n \leq \chi(G)\chi(\overline{G})$. Why? Let $\chi(G) = k$, that
+  means that there is at least one independent set $S$ of vertices (vertices that
+  share the same colour), with at least $\frac{n}{k}$ vertices.
+  Since the induced subgraph $G[S]$ is a null graph, $\overline{G}[S]$ is a
+  complete graph, so $\chi(\overline{G}) \leq \frac{n}{k}$; the chromatic number
+  of a graph must be greater than or equal to its clique number. So
+  $n = k*\frac{n}{k} \leq \chi(G)\chi(\overline{G})$. So far we have:
+  \[
+    2\sqrt{n} \leq 2\sqrt{\chi(G)\chi(\overline{G})} \leq \chi(G) + \chi(\overline{G})
+  \]
+
+  \textbf{Base case:}
+  A graph consisting of a single vertex, and its complement, can be coloured
+  with 1 colour. $1 + 1 \leq n + 1$ = 2
+
+  \textbf{Induction step:}
+  Let G be a graph with $n$ vertices. Let $v \in V(G)$. By our hypothesis, if
+  $\chi(G - v) = k$ and $\chi(\overline{G} - v) = l$, then $k + l = n$.
+
+  Let's observe these two cases:
+  \begin{enumerate}
+  \item If $d_G(v) < k$ then you can colour $G$ with $k$ colours. In $\overline{G}$ we
+    assign $v$ a new colour, since $G$ may be harder to colour than $G - v$. Ergo,
+    \[
+      \chi(G) + \chi(\overline{G}) \leq k + (l + 1) = n + 1
+    \]
+
+  \item We can follow the same reasoning if $d_G(v) \geq k$: In that case,
+    $d_{\overline{G}}(v) \leq (n - 1) - k = l - 1 < l$. We now have the same as
+    above; $\overline{G}$ can be coloured with $l$ colours, and if we assign $v$
+    a new colour in $G$, we have:
+    \[
+      \chi(G) + \chi(\overline{G}) \leq (k + 1) + l = n + 1
+    \]
+  \end{enumerate}
+
+\end{solution}
+
+\begin{problem}
+\item (10 points) Let G be a graph such that every two odd cycles have at least one common vertex.
+Prove that G is 5-colorable.
+\end{problem}
+
+
+
+\begin{problem}
+\item (8 points) Show that if $G$ is regular with degree 3 and  Hamiltonian then $\chi'(G)\le 3$.
+\end{problem}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

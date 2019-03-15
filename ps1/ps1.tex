@@ -1,0 +1,301 @@
+\documentclass[a4paper,11pt]{amsart}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\parskip 1ex
+\parindent 0 pt
+
+\lstset{basicstyle=\ttfamily}
+
+\newcounter{temp}
+\newcounter{prob_counter}
+\newcounter{sprob_counter}
+
+\newenvironment{problem}
+{\begin{list}{{\bf \arabic{prob_counter}}}{
+      \usecounter{prob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{4.3ex}
+      \setlength{\leftmargin}{1.4em}}
+      \setcounter{prob_counter}{\value{temp}}
+}
+{\setcounter{temp}{\value{prob_counter}}
+  \end{list}
+}
+
+\newenvironment{subprob}
+{
+  \begin{list}{{\bf \alph{sprob_counter}}}{
+      \usecounter{sprob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{.5ex}
+      \setlength{\leftmargin}{1.7em}}
+}
+{\end{list}}
+
+\newenvironment{solution}{\textbf{Solution.}}{\qed}
+
+\newcommand{\rubrik}[1]{\bigskip \begin{center}{\bf #1}\end{center} \medskip}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+{\small{\sc\noindent
+        Arnaldur Bjarnason ({\tt arnaldur15@ru.is})
+}}
+
+\rubrik{PROBLEM SET 1 (T-445-GRTH)}
+
+You need to collect $\bf 50$ points to get a full score {\bf but} you cannot get more than {\bf X} points (in total) from a problem section with annotation {\bf max X}.
+
+{\bf Please make sure to:}\\
+1. Write your name/email(s) above.\\
+2. Write your answers in \texttt{{\textbackslash}begin\{solution\} ... {\textbackslash}end\{solution\}} blocks. Turn in a single \LaTeX-generated pdf.\\
+3. Write clear and concise proofs: points may be deducted for vagueness.
+
+
+
+
+
+
+
+\section{Modelling with Graphs ({\bf max 8})}
+
+
+
+\begin{problem}
+ \item (5 points) Consider the $3 \times 3$ chessboard and the following configuration of knights:
+
+ \vspace{0.2cm}
+
+\begin{center}
+ \includegraphics[height=2cm]{guarinis-problem.png}
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent In one step, a knight can move two squares horizontally and one vertically,
+or two vertically and one horizontally. The white knights and the black knights wish to exchange
+places.
+
+\begin{subprob}
+ \item Model this problem with a simple graph.
+ \item From the graph representation, conclude that there is or isn't a way for the white knights and the black
+ knights to exchange places.
+\end{subprob}
+\end{problem}
+
+\begin{solution}
+  \begin{subprob}
+\item In the image, the right graph corresponds both spatially and topoloically to the chess sub board where each node corresponds to a square and/or a knight. The left graph has had the isolated center vertex removed and the edges of the others have been relax to illustrate more clearly that the graph is a $C_8$ cycle.\\ \\ \includegraphics[width=\linewidth]{KnightTour.png}
+  \item Each knight can take a step clockwise along the cycle. If all knights do so repeatedly in tandem(all knights move once before any knight takes a second move) they will eventually swap locations.
+  \end{subprob}
+\end{solution}
+
+
+\begin{problem}
+ \item (5 points) Model and solve the following problem using graphs: Arrange the integers from 1 to 15 on a line so that the sum of every consecutive numbers is a square.
+\end{problem}
+\begin{solution}\\
+  $V = \{n | 1 \leq n \leq 15\ \wedge n \in \ZZ\}$ \\
+  $E = \{\{v,u\} | v,u \in V \wedge \sqrt{v+u} \in \ZZ\}$ \\
+  This graph describes the problem and it was obtained using the following Julia expression:
+  \begin{lstlisting}
+Set([[a,b] for a = 1:15, b = 1:15 if isSquare(a+b)])
+\end{lstlisting}
+And the resulting pairs were converted to dot notation and rendered using graphviz:\\
+\begin{center}
+  \includegraphics[width=\linewidth]{problem2.png}
+\end{center}
+As can clearly be seen that there is exactly one path graph that maches the criteria of the problem:
+$9 - 7 - 2 - 14 - 11 - 5 - 4 - 12 - 13 - 3 - 6 - 10 - 15 - 1 - 8$
+\end{solution}
+
+
+
+
+\section{Graphs I   ({\bf max 26})}
+
+\begin{problem}
+ \item (5 points) For every $k$-regular graph is there a $(k+1)$-regular graph that contains the $k$-regular graph as a subgraph?
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\newpage
+\begin{problem}
+ \item (7 points)
+ Is there a simple graph on $n\ge 2$ vertices such that the vertices all have distinct degrees? Is there a (general) graph with this property?
+\end{problem}
+\begin{solution}
+  If we assume that there is a graph whose vertices each have unique degree.
+  Then the following must be true:
+$$\{d(v) : v \in V\} = \{n : 0 \leq n < |V| \wedge n \in \ZZ\}$$
+Since the maximum degree of $v$ is $|V|-1$.
+It follows that there must be a vertex with degree 0 and a vertex which is connected to all other verteces. Both can obviously not be true thus no such graph exists.
+
+
+\end{solution}
+
+
+\begin{problem}
+ \item (10 points)
+ Show that every simple graph with average degree $\bar d$ contains a subgraph of minimal degree at least $\bar d/2$.
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+
+\begin{problem}
+ \item (5 points) Prove that if a graph $G$ has exactly two vertices $u$ and $v$ of odd degree, then $G$ has a $u,v$-path.
+\end{problem}
+\begin{solution}
+  If $G$ does not have a $u,v$-path then $\{u,v\} \notin E$ as with two vertexes there can be no other path. To have odd degree $u$ needs to show up an odd number of times in $E$ so there must be an edge $\{u,x\}$. The only candidate for $x$ is $v$ so $\{u,v\} \in E$ and thus there is a path.
+\end{solution}
+
+\begin{problem}
+ \item (5 points) Prove that if a simple graph $G$ contains an odd cycle (i.e., cycle of odd length), then it contains an \emph{induced} odd cycle, i.e., there is a set $X\subseteq V(G)$ such that $G[X]$ consists of a single odd cycle. Does a similar claim hold for even cycles? Explain.
+\end{problem}
+%\begin{solution}
+%\end{solution}
+
+\newpage
+
+\section{Graphs II  ({\bf max 28}) }
+
+
+\begin{problem}
+ \item (5 points)
+ For $r,s\in \NN$ with $2\le r\le s$, show that complete graphs $K_r$ and $K_s$ together have fewer edges than $K_{r-1}$ and $K_{s+1}$ together:
+\[
+|E(K_r)| + |E(K_s)| < |E(K_{r-1})| + |E(K_{s+1})|.
+\]
+Use this to show that a simple graph $G$ with $n$ vertices and $k$ components has the maximum number of edges when one component is $K_{n-k+1}$ and the remaining $k-1$ are each a single vertex.
+\end{problem}
+\begin{solution}
+  We have
+  $|E(K_n)| = \frac{(n-1)n}{2}$ thus
+  $$\frac{(r-1)r+(s-1)s}{2} < \frac{(r-2)(r-1)+(s+1)s}{2}$$
+  $$r^2-r+s^2-s < r^2-3r+2+s^2+s$$
+  $$r < s+1$$
+  Since $r \leq s$ the statement $|E(K_r)| + |E(K_s)| < |E(K_{r-1})| + |E(K_{s+1})|$ is true.
+  Let $C$ be a component in $G$. The maximal $|E(C)|$ is if $C = K_{|V(C)|}$ thus all $C$ in $G$ are complete graphs. For any arrangement of complete components, $|E(G)|$ can be increased by moving a vertex from a $C_1$ to $C_2$ if $V(C_1) \leq V(C_2)$. Reapeating this operation on each pair of components will ultimately lead to $k-1$ $K_1$ subgraphs and one large clique.
+\end{solution}
+
+
+\begin{problem}
+ \item (10 points)
+ The \emph{complement} $\bar G$ of a simple graph $G$ is the graph with the same vertices
+  as $G$ that has an edge between vertices $u$ and $v$ if and only if
+  there is no edge between $u$ and $v$ in $G$.
+  \begin{subprob}
+    \item If $G$ is not connected,  what can you say about the connectivity
+    of $\bar G$?
+    \item Give an example of a graph $G$ such that both $G$ and $\bar G$ are connected.
+  \end{subprob}
+\end{problem}
+%\begin{solution}
+%\end{solution}
+
+\begin{problem}
+ \item (13 points) A \textit{bridge} is an edge whose removal from the graph increases the number of connected components.
+  Show that an $r$-regular \emph{bipartite} graph with $r \ge 2$ does not have a bridge.
+\end{problem}
+%\begin{solution}
+%\end{solution}
+
+
+\begin{problem}
+ \item (10 points) Prove that every graph of minimum degree at least 2 contains a cycle.
+\end{problem}
+\begin{solution}
+  Assume that there is a graph $G$ of minimum degree of at least 2 that is acyclic.
+  Thus $G$ is a tree and since there are no leaves ($d(v) = 1$) every vertex is a parent of another vertex.
+  This means that $G$ is an infinite graph.
+\end{solution}
+
+
+
+
+
+\section{Digraphs ({\bf max 20})}
+
+\begin{problem}
+ \item (5 points)
+ For $n \ge 3$, let $\mathcal{C}(n)$ be the collection of digraphs $\vec{G}$ with
+ $V(\vec{G}) = \{u_1, \dots, u_n\}$ that satisfy the following two conditions:
+ \begin{itemize}
+  \item The underlying graph of each digraph in $\mathcal{C}(n)$ is the cycle $C_n$.
+  \item No digraph in $\mathcal{C}(n)$ is a directed cycle.
+ \end{itemize}
+\noindent  What is the size of the set $\mathcal{C}(n)$?
+\end{problem}
+%\begin{solution}
+%\end{solution}
+
+
+\newpage
+\begin{problem}
+ \item (8 points)
+ In a certain country, there is a single one-way street between every two cities. Show that there is a  city from which you can travel to any other city (by car and without traffic violations). \small{Hint: Use induction.}
+\end{problem}
+\begin{solution}\\
+  Let the optimus city be the city from which all other cities can be reached.\\
+  If there is just one city, it can be reached from itself and is thus the optimus city.\\
+  When a city is added, there is a street connecting the new city to optimus city. If the street leads to optimus city, the new city becomes the optimus city. If the street leads from optimus city to the new city, optimus city maintains its title.
+\end{solution}
+
+
+
+\begin{problem}
+ \item (10 points)
+Show that every connected simple graph with an even number of edges has an orientation in which every vertex $v$ has even out-degree $d^+(v)$.
+\end{problem}
+\begin{solution}
+  Let oddity be wether a vertex has odd or even degree, e.g. $d^+(v) = 3$ thus $v$'s oddity is odd.
+  For any edge $\{u,v\}$, the direction can be swapped which increases the out-degree by one for one edge and decreases the other. By changing the direction of $\{u,v\}$, both $u$ and $v$ change oddity. By swapping the direction of two edges $\{u,v\}$ and $\{u,w\}$, $u$ does not change oddity but $v$ and $w$ do. Using these methods any pair of odd out-degree verteces can be turned even by swapping the direcion of each edge in a path connecting them. The sum of the out-degrees of a graph with even degrees is even. An even number can only be the sum of even numbers and/or an even amount of odd numbers. Thus each odd out-degree vertex can be paired and they can be turned even.
+\end{solution}
+
+
+
+\section{Graph Minors ({\bf max 8}) }
+
+\begin{problem}
+ \item (5 points) Show that $K_n$ is always a contraction of $K_{n+1}$. Is $K_{n,n}$ always a contraction of $K_{n+1, n+1}$?
+\end{problem}
+\begin{solution}
+  Take $K_{n+1}$ and contract any edge $e=\{v,w\}$. This results in a new vertex $u$ which is adjacent to every other vertex in the graph because $v$ and $w$ were. Each other vertex in the graph now has degree of one less because they are adjacent to one less vertex. Thus the graph becomes $K_n$.\\
+  Contracting any edge in $K_{n+1,n+1}$ results in a new vertex that is connected to all other verteces and thus no longer bipartite.
+\end{solution}
+
+\begin{problem}
+ \item (5 points)
+ Show that for every $n \in \mathbb{N}$, $K_n$ is a contraction of $K_{n,n}$.
+\end{problem}
+\begin{solution}
+  Let $u_i$ be the i-th vertex in the part $U$ and $v_i$ be the i-th vertex in the part $V$.
+  By definition each $u$ is connected to all $v$ and vice-versa.
+  by contracting each edge $\{u_i,v_i\}$ each resulting $w_i$ must be connected to all other $w_j$ thus forming a complete graph.
+\end{solution}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
