@@ -17,7 +17,7 @@
       \setlength{\leftmargin}{1.4em}}
       \setcounter{prob_counter}{\value{temp}}
 }
-{\setcounter{temp}{\value{prob_counter}}
+{\setcounter{temp}{\value{prob_counter}}  
   \end{list}
 }
 
@@ -67,34 +67,9 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 \section{Independent Sets ({\bf max 30})}
 
 \begin{problem}
- \item (10 points) Find a recursive formula for counting the number of \emph{maximal} independent sets in $P_n$ $(n\ge 1)$. Use it to derive a formula counting the number of maximal independent sets in $C_n$.
+ \item (10 points) Find a recursive formula for counting the number of \emph{maximal} independent sets in $P_n$ $(n\ge 1)$. Use it to derive a formula counting the number of maximal independent sets in $C_n$. 
 \end{problem}
 
-\begin{solution}
-  Let $M(G)$ be the set of maximal independent sets of $G$.
-  We can represent each element of  $M(P_n)$ as a string of length $n$ where $0 = u \in V(P), u \notin S$ where $S$ is a maximal independent set of $P$ and $1 = v \in V(P), v \in S$. All strings of length $3$ or more, must either start with $010$ or $10$ and from that we can define a reccurence relation. Let $*$ be the concatenation operator. To find the set of maximal independent sets of $P_n$:
-  \[M(P_n) = \{10 * e | e \in M(P_{n-2})\} \cup \{010 * e | e \in M(P_{n-3})\}\]
-  This gives rise to the recursive formula $pr(n)$:
-  \[ pr(n) = \text{number of maximal independent sets in } P_n \]
-  \[
-    pr(n) =
-    \begin{cases}
-      1 & \text{if } n = 0\\
-      n & \text{if } n \leq 2\\
-      pr(n-2) + pr(n-3) & \text{otherwise}
-    \end{cases}
-  \]
-  A similar recurrence relation can be used for $C_n$:
-  \[ cr(n) = \text{number of maximal independent sets in } C_n \]
-  \[ cr(n) = 1
-    \begin{cases}
-      1 & \text{if } n = 0\\
-      n & \text{if } n \leq 3\\
-      2 & \text{if } n = 4\\
-      cr(n-2) + cr(n-3) & \text{otherwise}
-    \end{cases}
-  \]
-\end{solution}
 
 \begin{problem}
  \item (8 points) Show that for every simple graph $G$,
@@ -106,35 +81,27 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 
 % Verify
 \begin{solution}
-  \begin{subprob}
-  \item
-    Since $\chi(G) \leq D(G) + 1$, we have: $\alpha(G) \geq \frac{|V(G)|}{\chi(G)} \geq \frac{|V(G)|}{D(G)+1}$
-  \item
-    Every maximal independent set contains at least $\alpha(G)$ vertices by
-    definition. Since $\chi(G) \leq \Delta(G) + 1$, we have: $\alpha(G) \geq \frac{|V(G)|}{\chi(G)} \geq \frac{|V(G)|}{\Delta(G)+1}$
-  \item
-    Let $v$ be a vertex with degree $\Delta(G)$. Observe that $v$'s neighbours
-    form an independent set of vertices. Thus, the maximum independent set is of
-    size at least $\Delta(G)$.
-  \end{subprob}
+  Since $\chi(G) \leq D(G) + 1$, we have: $\alpha(G) \geq \frac{|V(G)|}{\chi(G)} \geq \frac{|V(G)|}{D(G)+1}$
+\end{solution}
 
+\begin{solution}
+  Every maximal independent set contains at least $\alpha(G)$ vertices by
+  definition. Since $\chi(G) \leq \Delta(G) + 1$, we have: $\alpha(G) \geq \frac{|V(G)|}{\chi(G)} \geq \frac{|V(G)|}{\Delta(G)+1}$
+\end{solution}
+
+\begin{solution}
+  Let $v$ be a vertex with degree $\Delta(G)$. Observe that $v$'s neighbours
+  form an independent set of vertices. Thus, the maximum independent set is of
+  size at least $\Delta(G)$.
 \end{solution}
 
 \begin{problem}
-\item (8 points) Show that:
-  \begin{subprob}
-  \item  For every simple graph $G$, $\alpha(G)\le |V(G)|-\delta(G)$.
-  \item If $G$ has no isolated vertices, then $\alpha(G)\le \frac{|E(G)|}{\delta(G)}$.
-  \end{subprob}
+ \item (8 points) Show that:
+\begin{subprob} \item  For every simple graph $G$, $\alpha(G)\le |V(G)|-\delta(G)$. 
+\item If $G$ has no isolated vertices, then $\alpha(G)\le \frac{|E(G)|}{\delta(G)}$.
+\end{subprob}
 \end{problem}
-\begin{solution}
-  \begin{subprob}
-  \item
-    By definition the vertex $v \in G, d(v) = \delta(G)$ has no neighbours in the maximum independent set of $G$ so there are at least $\delta(G)$ vertices that are not in the maximum independent set. All other $u \in V(G)$ might be an thus $\alpha(G)\le |V(G)|-\delta(G)$ is true.
-  \item
-    Each edge $e$ $\forall v, \forall e = \{v,u\}$ where $v$ is in some maximum independent set of $G$ is uniquely connected to $v$ and no other vertex in $G$. All vertices in the maximum independent set have at least $\delta(G)$ unique edges so their number is at least $\alpha(G)\delta(G)$ this number is at most $|E(G)|$ so $\alpha(G)\delta(G) \leq |E(G)|$ which is equivalent to the requested formula.
-  \end{subprob}
-\end{solution}
+
 \begin{problem}
  \item (15 points) Show that every simple triangle-free graph has an independent set of size at least $\lfloor\sqrt{n}\rfloor$. Find a triangle-free graph that does not have an independent set of size  $\lceil\sqrt{n}\rceil$
 \end{problem}
@@ -166,8 +133,8 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 
 
 \begin{problem}
- \item (5 points) Let $G=(X\cup Y, E)$ be a simple bipartite graph. Suppose that there is
- a $k \in \NN$ such that $d(x) \ge k \ge d(y)$ for all $x \in X, y \in Y$. Show that $G$
+ \item (5 points) Let $G=(X\cup Y, E)$ be a simple bipartite graph. Suppose that there is 
+ a $k \in \NN$ such that $d(x) \ge k \ge d(y)$ for all $x \in X, y \in Y$. Show that $G$ 
  has a matching saturating $X$ (covering all of $X$).
 \end{problem}
 
@@ -180,20 +147,10 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
   Suppose that there is a matching $M$ that saturates $W$, and a matching $N$ that saturates $Z$.
   Prove that there is a matching that saturates $W \cup Z$.
   \item Conclude that there is a matching that saturates $A$.
- \end{subprob}
+ \end{subprob} 
 \end{problem}
 
-\begin{solution}
-  \begin{subprob}
-  \item
-    Let $S = A \cap X$.
-    For any $W \subseteq S$,
-    there are $\Delta(G)|W|$ edges going into at least $\frac{\Delta(G)|W|}{\Delta(G)} = |W|$ vertices in $Y$.
-    Therefore $\forall W, W \subseteq S$ we have $|W| \leq |N(W)|$ which by Hall's Marriage Theorem means that there exists a saturating matching for $S$.
-  \item
 
-  \end{subprob}
-\end{solution}
 
 \begin{problem}
  \item (6 points) Let $G=(X\cup Y, E)$ be a simple bipartite graph such that $d(x) \ge 1$ for all $x \in X$
@@ -220,13 +177,48 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 
 
 \begin{problem}
- \item (6 points) Let $G$ be a simple graph with an even number of vertices such that $d(v) \ge \frac{|V(G)|}{2}$ for every  vertex $v \in V(G)$. Show that $G$ has a perfect matching.
+ \item (6 points) Let $G$ be a simple graph with an even number of vertices such that $d(v) \ge \frac{|V(G)|}{2}$ for every  vertex $v \in V(G)$. Show that $G$ has a perfect matching. 
 \end{problem}
 
 \begin{problem}
  \item (9 points) Let $T$ be a tree on $n$ vertices with $l$ leaves. Show that $T$ has a matching
  of size at least $\left\lceil \frac{n-l}{2} \right\rceil$.
 \end{problem}
+
+\begin{solution}
+  This we can prove by induction on the number of leaves.
+
+  \textbf{Basis step:}
+  $l \leq 2$, trivial.
+  
+  \textbf{Induction step:}
+  Let $T$ be a tree with $n$ vertices and $l$ leaves, so that
+  \[
+    \lceil \frac{n-l}{2} \rceil \leq |M^*|
+  \]
+
+  Let's construct a tree $T'$ with $l + 1$ leaves by adding a branch of\
+  length $2\alpha + \delta$ to $T$ from a non-leaf vertex, where:
+  \[
+    \delta =
+    \begin{cases}
+      0,&\text{if new branch length is even}\\
+      1,&\text{if new branch length is odd}
+    \end{cases}
+  \]
+
+  For $T'$, we have that:
+  \[
+    \begin{split}
+      \lceil \frac{(n + 2\alpha + \delta) - (l + 1)}{2} \rceil =\\
+      \lceil \frac{(n - l) + (\delta - 1)}{2} + \alpha \rceil =\\
+      \lceil \frac{(n - l) + (\delta - 1)}{2} \rceil + \alpha \leq\\
+      |M^*| + \alpha
+    \end{split}
+  \]
+  Which as can be seen holds no matter if $\delta = 0$ or $\delta = 1$.
+  
+\end{solution}
 
 \begin{problem}
 \item (8 points) For every $k \ge 1$, show that every simple $k$-regular graph has a matching of size at least
@@ -244,8 +236,8 @@ Show that, if $X$ is saturated by $M$, then $X$ is also saturated by some maximu
 
 
 \begin{problem}
- \item (10 points) Show that a tree has either one perfect matching or none. For a graph $G$, denote by
- $o(G)$ the number of components of $G$ of odd cardinality. Prove that, for a tree $T$, $T$ has a perfect
+ \item (10 points) Show that a tree has either one perfect matching or none. For a graph $G$, denote by 
+ $o(G)$ the number of components of $G$ of odd cardinality. Prove that, for a tree $T$, $T$ has a perfect 
  matching, if and only if, $o(T - v) = 1$ for all vertices $v$.
 \end{problem}
 
@@ -259,14 +251,18 @@ Show that, if $X$ is saturated by $M$, then $X$ is also saturated by some maximu
  \end{subprob}
 \end{problem}
 
+\begin{solution}
+  Let's assume by contradiction that $|M| < |M^*|/2$. At most $2|M|$ edges
+  in $M^*$ have a vertex in $M$. Since we have that $2|M| < |M^*|$,
+  there is at least one edge in $|M^*|$ that has no vertex in $M$. That
+  edge can be added to $M$ to make a larger matching, which leads to a
+  contradiction since $M$ wasn't maximal.
+  
+\end{solution}
 
-
+\begin{solution}
+\end{solution}
 
 
 \end{document}
 
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
