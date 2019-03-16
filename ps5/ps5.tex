@@ -70,6 +70,31 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
  \item (10 points) Find a recursive formula for counting the number of \emph{maximal} independent sets in $P_n$ $(n\ge 1)$. Use it to derive a formula counting the number of maximal independent sets in $C_n$.
 \end{problem}
 
+\begin{solution}
+  Let $M(G)$ be the set of maximal independent sets of $G$.
+  We can represent each element of  $M(P_n)$ as a string of length $n$ where $0 = u \in V(P), u \notin S$ where $S$ is a maximal independent set of $P$ and $1 = v \in V(P), v \in S$. All strings of length $3$ or more, must either start with $010$ or $10$ and from that we can define a reccurence relation. Let $*$ be the concatenation operator. To find the set of maximal independent sets of $P_n$:
+  \[M(P_n) = \{10 * e | e \in M(P_{n-2})\} \cup \{010 * e | e \in M(P_{n-3})\}\]
+  This gives rise to the recursive formula $pr(n)$:
+  \[ pr(n) = \text{number of maximal independent sets in } P_n \]
+  \[
+    pr(n) =
+    \begin{cases}
+      1 & \text{if } n = 0\\
+      n & \text{if } n \leq 2\\
+      pr(n-2) + pr(n-3) & \text{otherwise}
+    \end{cases}
+  \]
+  A similar recurrence relation can be used for $C_n$:
+  \[ cr(n) = \text{number of maximal independent sets in } C_n \]
+  \[ cr(n) = 1
+    \begin{cases}
+      1 & \text{if } n = 0\\
+      n & \text{if } n \leq 3\\
+      2 & \text{if } n = 4\\
+      cr(n-2) + cr(n-3) & \text{otherwise}
+    \end{cases}
+  \]
+\end{solution}
 
 \begin{problem}
  \item (8 points) Show that for every simple graph $G$,
@@ -100,7 +125,14 @@ You need to collect $\bf 60$ points to get a full score {\bf but} you cannot get
 \item If $G$ has no isolated vertices, then $\alpha(G)\le \frac{|E(G)|}{\delta(G)}$.
 \end{subprob}
 \end{problem}
-
+\begin{solution}
+  \begin{subprob}
+  \item
+    By definition the vertex $v \in G, d(v) = \delta(G)$ has no neighbours in the maximum independent set of $G$ so there are at least $\delta(G)$ vertices that are not in the maximum independent set. All other $u \in V(G)$ might be an thus $\alpha(G)\le |V(G)|-\delta(G)$ is true.
+  \item
+    Each edge $e$ $\forall v, \forall e = \{v,u\}$ where $v$ is in some maximum independent set of $G$ is uniquely connected to $v$ and no other vertex in $G$. All vertices in the maximum independent set have at least $\delta(G)$ unique edges so their number is at least $\alpha(G)\delta(G)$ this number is at most $|E(G)|$ so $\alpha(G)\delta(G) \leq |E(G)|$ which is equivalent to the requested formula.
+  \end{subprob}
+\end{solution}
 \begin{problem}
  \item (15 points) Show that every simple triangle-free graph has an independent set of size at least $\lfloor\sqrt{n}\rfloor$. Find a triangle-free graph that does not have an independent set of size  $\lceil\sqrt{n}\rceil$
 \end{problem}
