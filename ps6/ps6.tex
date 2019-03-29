@@ -17,7 +17,7 @@
       \setlength{\leftmargin}{1.4em}}
       \setcounter{prob_counter}{\value{temp}}
 }
-{\setcounter{temp}{\value{prob_counter}}
+{\setcounter{temp}{\value{prob_counter}}  
   \end{list}
 }
 
@@ -72,12 +72,47 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
  \item (5 points) Prove that every connected unit interval graph has a Hamiltonian path.
 \end{problem}
 
+\begin{solution}
+  Let $\widetilde{S} = (I_1,...,I_n)$, be the list of unit intervals that define
+  the interval graph $G$, where $I_i = [a_i;b_i] = \{x\in\RR : a_i \leq x \leq
+  b_i\}$ ordered so that $a_i \leq a_j$ for $1 \leq i < j \leq n$.
+
+  If $v_i$ is the vertex that corresponds to $I_i$, then the path
+  $(v_1,...,v_n)$ is a Hamiltonian path: If $I_i \cap I_{i+1} \neq \emptyset$,
+  then $v_i$ and $v_{i+1}$ are connected by an edge, otherwise $G$ is not
+  connected.
+\end{solution}
+
 \begin{problem}
 \item (8 points) Prove that every outerplanar graph on $n$ vertices has at most $2n-3$ edges.
 \end{problem}
 
+\begin{solution}
+  Let $G$ be n outerplanar graph on $n$ vertices. If $G$ has no inner faces, it
+  as a tree, and thus has exactly $n - 1$ edges. Otherwise, we have the
+  following:
+  \[
+    \begin{split}
+      3(f-1) + n \leq 2m\\
+      3f - 3 + n \leq 2m\\
+      f \leq \frac{2m + 3 - n}{3}
+    \end{split}
+  \]
+  Because each interal face has atleast $3$ edges, the external face has at
+  least $n$ edges, and every edge belongs to two faces. Plug this into Euler's
+  Formula, and we get:
+  \[
+    \begin{split}
+      n - m + f = 2\\
+      2 \leq n - m + \frac{2m + 3 - n}{3}\\
+      6 \leq 2n - m + 3\\
+      m \leq 2n - 3\\
+    \end{split}
+  \]
+\end{solution}
+
 \begin{problem}
-\item (10 points) Let $G$ be a graph in which any two simple cycles have at most one vertex in common.
+\item (10 points) Let $G$ be a graph in which any two simple cycles have at most one vertex in common. 
 \begin{subprob}
 \item Let $B$ be a block in $G$. What can you say about the structure of $B$?
 \item Prove that $G$ is an outerplanar graph.
@@ -105,6 +140,32 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
  \end{subprob}
 \end{problem}
 
+\begin{solution}
+  Let $G$ be a split graph, where $X$ is the clique set and $Y$ is the
+  independent set. A graph is chordal if it contains no chordless cycles of
+  length greater or equal to $3$. Let's assume there exists a chordless
+  cycle $C$ on $k$ vertices in $G$. Observe that $C$ may not be composed of
+  verteces solely in either $X$, since $G[C]$ would then be a complete graph.
+
+  Let $v$ be one of the vertices such that $v \in C \cap Y$. There must exist
+  two vertices $a, b \in N(v) \cap C$, otherwise $C$ wouldn't be a cycle.
+  Since $a, b \in X$, and $G[X]$ is complete, there is an edge between $a$
+  and $b$. Thus, $G[\{a, b, c\}]$ forms a triangle, and $C$ is not chordless.
+  Contradiction!
+\end{solution}
+
+\begin{solution}
+  Let $G$ be a split graph, where $X$ is the clique set and $Y$ is the
+  independent set. Let $\overline{G}$ be the compliment of $G$. Since $G[X]$ is
+  a clique, then $\overline{G}[X]$ is a null graph, and since $G[Y]$ is a null graph,
+  $\overline{G}[Y]$ is a clique. Ergo $\overline{G}$ is a split graph.
+\end{solution}
+
+\begin{solution}
+  The split graph composed of $K_4$ and $N_1$ is not an interval graph, because
+  it is not chordal; it contains a chordless cycle of length $4$.
+\end{solution}
+
 
 \begin{problem}
  \item (20 points) A graph $G$ is a \emph{threshold graph} if there is a non-negative number $B$ and a non-negative number $a_v$ for each vertex $v\in V(G)$, such that for any subset $U \subseteq V(G)$, $U$ is an independent set \emph{if and only if} $\sum_{v\in U} a_v \le B$.
@@ -112,8 +173,8 @@ Use this definition of threshold graphs to prove:
 \begin{subprob}
  \item $K_n$ is a threshold graph.
  \item Adding an isolated vertex to a threshold graph gives a threshold graph.
- \item Adding a dominating vertex (a vertex that is connected to
- every other vertex) to a threshold graph gives a threshold graph.
+ \item Adding a dominating vertex (a vertex that is connected to 
+ every other vertex) to a threshold graph gives a threshold graph. 
  \item Every threshold graph is a split graph.
 \end{subprob}
 Note: \emph{Every} threshold graph can be built by repeatedly doing the two operations above (no proof required).
@@ -128,6 +189,7 @@ Note: \emph{Every} threshold graph can be built by repeatedly doing the two oper
 \item (5 points) Let $\{[a_1, b_1], \ldots, [a_n, b_n]\}$ be an interval representation of a graph $G$.
 Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : \mbox{$[a_j, b_j]\cap [a_i, b_i] \neq \emptyset$} \},$$ is an interval representation of the graph $G^2$.
 \end{problem}
+
 
 
 \begin{problem}
@@ -156,7 +218,7 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 
 \section{Claw-Free Graphs}
 
-{\bf Definition.} A \emph{claw} graph is a star with three leaves, i.e. has four vertices, three of them adjacent to the fourth one. A graph is \emph{claw-free} if it doesn't contain a claw as an \emph{induced} subgraph.
+{\bf Definition.} A \emph{claw} graph is a star with three leaves, i.e. has four vertices, three of them adjacent to the fourth one. A graph is \emph{claw-free} if it doesn't contain a claw as an \emph{induced} subgraph. 
 
 {\bf Definition.} The line graph $L(G)$ of a graph $G$ is such that each vertex of $L(G)$ represents an edge of $G$, and two vertices of $L(G)$ are adjacent if and only if their corresponding edges are incident in $G$ (share a vertex). For instance, the line graph of a star is a complete graph.
 
@@ -165,11 +227,11 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 \end{problem}
 
 \begin{problem}
- \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free.
+ \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free. 
 \end{problem}
 
 \begin{problem}
- \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$.
+ \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$. 
 \end{problem}
 
 \begin{problem}
@@ -183,7 +245,3 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 
 \end{document}
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
