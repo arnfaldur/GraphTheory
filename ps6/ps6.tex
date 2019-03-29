@@ -1,4 +1,4 @@
-n\documentclass[a4paper,11pt]{amsart}
+\documentclass[a4paper,11pt]{amsart}
 \usepackage{amssymb}
 \usepackage{graphicx}
 
@@ -118,6 +118,12 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
 \item Prove that $G$ is an outerplanar graph.
 \end{subprob}
 \end{problem}
+
+\begin{solution}
+  \begin{subprob}
+  \item $B = C_n$
+  \end{subprob}
+\end{solution}
 
 \begin{problem}
 \item (7 points) Prove that every unit coin graph on $n > 3$ vertices has at most $3n-7$ edges.
@@ -263,10 +269,9 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
  \item (6 points) Prove that every claw-free interval graph is a unit interval graph (i.e. the class of claw-free interval graphs is precisely the class of unit interval graphs).
 \end{problem}
 
-
-
-
-
+\begin{solution}
+  For an interval graph to have a claw, there needs to be an interval $I$ that overlaps three other intervals $\{i_1, i_2, i_3\}$ and no $i$ can overlap. For this to be possible, $I$ must be larger than one $i$ to have some room left for the other $i$. This contradicts the definition of a unit interval graph as all intervals must have the same size.
+\end{solution}
 
 \end{document}
 
