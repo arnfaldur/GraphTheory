@@ -1,0 +1,189 @@
+\documentclass[a4paper,11pt]{amsart}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\parskip 1ex
+\parindent 0 pt
+
+\newcounter{temp}
+\newcounter{prob_counter}
+\newcounter{sprob_counter}
+
+\newenvironment{problem}
+{\begin{list}{{\bf \arabic{prob_counter}}}{
+      \usecounter{prob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{4.3ex}
+      \setlength{\leftmargin}{1.4em}}
+      \setcounter{prob_counter}{\value{temp}}
+}
+{\setcounter{temp}{\value{prob_counter}}
+  \end{list}
+}
+
+\newenvironment{subprob}
+{
+  \begin{list}{{\bf \alph{sprob_counter}}}{
+      \usecounter{sprob_counter}
+      \addtolength{\labelsep}{.6ex}
+      \addtolength{\itemsep}{.5ex}
+      \setlength{\leftmargin}{1.7em}}
+}
+{\end{list}}
+
+\newenvironment{solution}{\textbf{Solution.}}{\qed}
+
+\newcommand{\rubrik}[1]{\bigskip \begin{center}{\bf #1}\end{center} \medskip}
+
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+{\small{\sc\noindent
+        Name1 ({\tt email1}) and Name2 ({\tt email2})
+}}
+
+\rubrik{PROBLEM SET 6 (T-445-GRTH)}
+
+You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get more than {\bf X} points (in total) from a problem section with annotation {\bf max X}.
+
+{\bf Please make sure to:}\\
+1. Write your name/email(s) on your work.\\
+2. Write your answers in \texttt{{\textbackslash}begin\{solution\} ... {\textbackslash}end\{solution\}} blocks.\\
+3. Write clear and concise proofs: points may be deducted for vagueness.
+
+
+
+
+\section{Intersection, Chordal, Outerplanar Graphs ({\bf max 55})}
+
+{\bf Definition.} A planar graph $G$ is \emph{outerplanar} if $G$ has an embedding in the plane in such a way that every vertex is on the boundary of the infinite face.
+
+\begin{problem}
+ \item (5 points) Prove that every connected unit interval graph has a Hamiltonian path.
+\end{problem}
+
+\begin{problem}
+\item (8 points) Prove that every outerplanar graph on $n$ vertices has at most $2n-3$ edges.
+\end{problem}
+
+\begin{problem}
+\item (10 points) Let $G$ be a graph in which any two simple cycles have at most one vertex in common.
+\begin{subprob}
+\item Let $B$ be a block in $G$. What can you say about the structure of $B$?
+\item Prove that $G$ is an outerplanar graph.
+\end{subprob}
+\end{problem}
+
+\begin{problem}
+\item (7 points) Prove that every unit coin graph on $n > 3$ vertices has at most $3n-7$ edges.
+\end{problem}
+
+
+\begin{problem}
+\item (8 points) Prove that for any unit disc graph $G$, $D(G) \le 3(\omega(G)-1)$.
+\end{problem}
+
+
+
+\begin{problem}
+ \item (20 points) A graph $G$ is a {\em split graph} if $V(G)$ can be partitioned into subsets $X,Y$, such that $G[X]$ is a clique and $G[Y]$ is a null graph.
+ \begin{subprob}
+  \item Prove that split graphs are chordal.
+  \item Prove that the complement of a split graph is a split graph.
+  %\item Let $G = (X, Y, E)$ be a split graph. Is it true that if $G$ is self-complementary (meaning $G$ is isomorphic to $\overline{G}$), then $|X|=|Y|$?
+  \item Find a split graph that is not an interval graph.
+ \end{subprob}
+\end{problem}
+
+
+\begin{problem}
+ \item (20 points) A graph $G$ is a \emph{threshold graph} if there is a non-negative number $B$ and a non-negative number $a_v$ for each vertex $v\in V(G)$, such that for any subset $U \subseteq V(G)$, $U$ is an independent set \emph{if and only if} $\sum_{v\in U} a_v \le B$.
+Use this definition of threshold graphs to prove:
+\begin{subprob}
+ \item $K_n$ is a threshold graph.
+ \item Adding an isolated vertex to a threshold graph gives a threshold graph.
+ \item Adding a dominating vertex (a vertex that is connected to
+ every other vertex) to a threshold graph gives a threshold graph.
+ \item Every threshold graph is a split graph.
+\end{subprob}
+Note: \emph{Every} threshold graph can be built by repeatedly doing the two operations above (no proof required).
+\end{problem}
+
+
+
+\section{Powers of Graphs}
+
+
+\begin{problem}
+\item (5 points) Let $\{[a_1, b_1], \ldots, [a_n, b_n]\}$ be an interval representation of a graph $G$.
+Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : \mbox{$[a_j, b_j]\cap [a_i, b_i] \neq \emptyset$} \},$$ is an interval representation of the graph $G^2$.
+\end{problem}
+
+
+\begin{problem}
+\item (10 points) Let $T$ be a tree. Show that $\chi(T^2) = \Delta(T) + 1$.
+\end{problem}
+
+
+
+\section{Perfect Graphs}
+
+
+\begin{problem}
+ \item (8 points) Prove that the complement of an odd cycle $C_{2k+1}$ with $k>1$ is  not a perfect graph.
+\end{problem}
+
+\begin{problem}
+ \item (10 points) Let $G,H$ be two perfect graphs whose intersection is a complete graph. Prove that $G \cup H$ is perfect.
+\end{problem}
+
+\begin{problem}
+\item (9 points) Show that perfection is closed neither under edge deletion nor (simple) contractions.
+\end{problem}
+
+
+
+
+\section{Claw-Free Graphs}
+
+{\bf Definition.} A \emph{claw} graph is a star with three leaves, i.e. has four vertices, three of them adjacent to the fourth one. A graph is \emph{claw-free} if it doesn't contain a claw as an \emph{induced} subgraph.
+
+{\bf Definition.} The line graph $L(G)$ of a graph $G$ is such that each vertex of $L(G)$ represents an edge of $G$, and two vertices of $L(G)$ are adjacent if and only if their corresponding edges are incident in $G$ (share a vertex). For instance, the line graph of a star is a complete graph.
+
+\begin{problem}
+ \item (5 points) Prove that the complement of a triangle-free graph is claw-free.
+\end{problem}
+
+\begin{problem}
+ \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free.
+\end{problem}
+
+\begin{problem}
+ \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$.
+\end{problem}
+
+\begin{problem}
+ \item (6 points) Prove that every claw-free interval graph is a unit interval graph (i.e. the class of claw-free interval graphs is precisely the class of unit interval graphs).
+\end{problem}
+
+
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
