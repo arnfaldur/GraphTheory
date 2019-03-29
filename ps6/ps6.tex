@@ -17,7 +17,7 @@
       \setlength{\leftmargin}{1.4em}}
       \setcounter{prob_counter}{\value{temp}}
 }
-{\setcounter{temp}{\value{prob_counter}}  
+{\setcounter{temp}{\value{prob_counter}}
   \end{list}
 }
 
@@ -112,7 +112,7 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
 \end{solution}
 
 \begin{problem}
-\item (10 points) Let $G$ be a graph in which any two simple cycles have at most one vertex in common. 
+\item (10 points) Let $G$ be a graph in which any two simple cycles have at most one vertex in common.
 \begin{subprob}
 \item Let $B$ be a block in $G$. What can you say about the structure of $B$?
 \item Prove that $G$ is an outerplanar graph.
@@ -173,8 +173,8 @@ Use this definition of threshold graphs to prove:
 \begin{subprob}
  \item $K_n$ is a threshold graph.
  \item Adding an isolated vertex to a threshold graph gives a threshold graph.
- \item Adding a dominating vertex (a vertex that is connected to 
- every other vertex) to a threshold graph gives a threshold graph. 
+ \item Adding a dominating vertex (a vertex that is connected to
+ every other vertex) to a threshold graph gives a threshold graph.
  \item Every threshold graph is a split graph.
 \end{subprob}
 Note: \emph{Every} threshold graph can be built by repeatedly doing the two operations above (no proof required).
@@ -196,7 +196,20 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 \item (10 points) Let $T$ be a tree. Show that $\chi(T^2) = \Delta(T) + 1$.
 \end{problem}
 
+\begin{solution}
+  Recall the following facts:
+  \begin{enumerate}
+    \item \textbf{Thm 9.55:} If $T$ is a tree, and $d \in \NN$, then $T^d$ is a
+      chordal graph.
+    \item \textbf{Cor. 9.37:} Every chordal graph is perfect.
+    \item By definition, if a graph $G$ is perfect, then $\chi(G) = \omega(G)$.
+  \end{enumerate}
 
+  Let $v$ be a vertex such that $d(v) = \Delta(T)$. Let $\mathit{N} = N(v) \cup \{v\}$ be the
+  closed neighbourhood of $v$. Since $v$ is a maximum degree vertex in $T$,
+  $T^2[\mathit{N}]$, is a maximum clique in $T^2$. Ergo, we have that
+  $\chi(G) = \omega(G) = |N| = \Delta(G) + 1$.
+\end{solution}
 
 \section{Perfect Graphs}
 
@@ -218,7 +231,7 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 
 \section{Claw-Free Graphs}
 
-{\bf Definition.} A \emph{claw} graph is a star with three leaves, i.e. has four vertices, three of them adjacent to the fourth one. A graph is \emph{claw-free} if it doesn't contain a claw as an \emph{induced} subgraph. 
+{\bf Definition.} A \emph{claw} graph is a star with three leaves, i.e. has four vertices, three of them adjacent to the fourth one. A graph is \emph{claw-free} if it doesn't contain a claw as an \emph{induced} subgraph.
 
 {\bf Definition.} The line graph $L(G)$ of a graph $G$ is such that each vertex of $L(G)$ represents an edge of $G$, and two vertices of $L(G)$ are adjacent if and only if their corresponding edges are incident in $G$ (share a vertex). For instance, the line graph of a star is a complete graph.
 
@@ -227,11 +240,11 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 \end{problem}
 
 \begin{problem}
- \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free. 
+ \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free.
 \end{problem}
 
 \begin{problem}
- \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$. 
+ \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$.
 \end{problem}
 
 \begin{problem}
@@ -244,4 +257,3 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 
 
 \end{document}
-
