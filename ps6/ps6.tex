@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{amsart}
+n\documentclass[a4paper,11pt]{amsart}
 \usepackage{amssymb}
 \usepackage{graphicx}
 
@@ -123,6 +123,9 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
 \item (7 points) Prove that every unit coin graph on $n > 3$ vertices has at most $3n-7$ edges.
 \end{problem}
 
+\begin{solution}
+  Let $CG_n$ be the maximally connected unit coin graph with $n$ vertices, $n>3$. By the degree sum formula we know that each vertex $v$ contributes $\frac{d(v)}{2}$ edges to $|E(CG)|$. The maximum degree of any $v \in V(CG)$ is $6$ and thus a maximally connected vertex contributes $3$ to $|E(CG)|$, this means that for any $CG$ we can add a maximally connected vertex and it will not increase the number of edges beyond $3n-7$. In the case of $CG_4$ there would have to be $14$ additional edges for all vertices to be maximally connected. These missing edges are all at the boundary of the graph. It is obvious that the perimiter of $CG_{n-1}$ is smaller or equal in size of $CG_n$. Since we have $|E(CG_4)| = 5 \leq 3*4-7$ the property holds for $CG_4$.
+\end{solution}
 
 \begin{problem}
 \item (8 points) Prove that for any unit disc graph $G$, $D(G) \le 3(\omega(G)-1)$.
@@ -236,12 +239,21 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 {\bf Definition.} The line graph $L(G)$ of a graph $G$ is such that each vertex of $L(G)$ represents an edge of $G$, and two vertices of $L(G)$ are adjacent if and only if their corresponding edges are incident in $G$ (share a vertex). For instance, the line graph of a star is a complete graph.
 
 \begin{problem}
- \item (5 points) Prove that the complement of a triangle-free graph is claw-free.
+\item (5 points) Prove that the complement of a triangle-free graph is claw-free.
 \end{problem}
 
+\begin{solution}
+  Let $A_n$ be set of $n$ vertices whose complement is $K_n$. We call $A_n$ an anti-clique of size $n$.
+  A claw is a $A_3 \cup v$ where all $u \in A_3$ are connected to $v$. A triangle is $K_3$ and its compliment is $A_3$, thus if there is a claw, there must be a triangle in the complement. Conversely, if there is no triangle, $A_3$ can't be in the complement and thus a claw can't be in the complement.
+\end{solution}
+
 \begin{problem}
- \item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free.
+\item (5 points) Prove that for any graph $G$, the line graph $L(G)$ is claw-free.
 \end{problem}
+
+\begin{solution}
+  Say there is a claw in $L(A)$. This means that there is an edge $e$ that is adjacent to three edges that are not adjacent to eachother. There must then be two edges $\neq e$, connected to each of the vertices in $e$. There must be a third edge that is connected to a vertex in $e$ which isn't connected to either of the afforementioned edges. This is impossible by the pigeonhole principle.
+\end{solution}
 
 \begin{problem}
  \item (7 points) Prove that for any claw-free graph $G$, $\frac{\Delta(G)}{2} \le \chi(G)\le \Delta(G)+1$.
@@ -257,3 +269,9 @@ Show that $\{[a_1, b'_1], \ldots, [a_n, b'_n]\}$, where $$b'_i = \max_j \{b_j : 
 
 
 \end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
