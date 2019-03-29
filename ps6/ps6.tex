@@ -121,7 +121,8 @@ You need to collect $\bf 65$ points to get a full score {\bf but} you cannot get
 
 \begin{solution}
   \begin{subprob}
-  \item $B = C_n$
+  \item $B = C_n$ as blocks can be cycles and the greatest clique that can be in $G$ is $K_3$ which is the same as $C_3$.
+  \item Let $v$ be a vertex that breaks the outerplanar property. There must be a cycle around $v$, $v$ must be connected to two parts of the cycle (otherwise $v$ is on a branch that can just be drawn on the outside). Since $v$ is connected to two vertices in the cycle there are two cycles that go through $v$ who share at least $3$ vertices with eachother, $v$ and each of the vertices connected to $v$. This contradicts the definition of $G$ and thus $v$ can not be in $G$.
   \end{subprob}
 \end{solution}
 
